@@ -1,0 +1,75 @@
+ModelView on ModelDB: creating and running:
+
+To install modelview:
+
+To create modelview folder sign into indexer.med.yale.internal.
+1) Run the below after cd'ing to the file shared ModelDB script folder:
+
+hg clone https://tom_morse@bitbucket.org/ramcdougal/modelview
+
+it will create the modelview folder among the other files and folders
+in the modeldb home folder.
+
+Run the same command
+hg clone https://tom_morse@bitbucket.org/ramcdougal/modelview
+in my home folder.  This will provide a place for the below mentioned sprinkle_json_gen.py
+to take a copy of the json_gnerator.py to sprinkle into each of the expanded modeldb models
+
+2) Note the neuronweb is from an early version Robert McDougal et
+al.'s neuronweb.  The neuronweb folder in modeldb:
+modeldb/modelview/neuronweb corresponds to the folder
+neuronweb/JQUERYUITest in Robert's repository.
+
+3) Download the nrntest repository from 
+hg clone http://www.neuron.yale.edu/hg/nrntest
+into the /home/tmm46 folder (doesn't need to be on modeldb)
+
+The process involves
+
+a) downloading the neuron code
+
+cd /home/tmm46/nrntest/verify
+(note there is a README here that explains how to run the nrn tester)
+./senselabmodels.py
+
+b) compiling the mod files
+it's necessary to set export variables for example
+export mdbtest=7.4
+export standard=7.4
+mkdir /home/tmm46/nrntest/verify/7.4
+(and then you can run this command in the verify folder
+sh verify.sh
+(or ./verify.sh)
+
+3) moving the json_generator into the model's top level folders and running
+python json_gnerator.py accessionid:
+
+This is done by 
+
+First starting screen so that one can detach (ctrl-A, D) and reattach latter: type
+"screen" and enter on the command line.  Secondly start vnc by entering "vncserver" on the command line.
+Thirdly inform the shell to send X11 to the vncserver by typing
+export DISPLAY="whatever_the_vncserver_program_said_was_display:was_number"
+Finally:
+cd'ing to ~/nrntest/verify and running
+python sprinkle_json_gen.py
+(wait some number of hours)
+
+If it is desired to regenerate the accessionnum.json files then delete them all before hand:
+rm /home/tmm46/nrntest/verify/7.4/*/*/*.json
+(each of their existence prevents the sprinkle_json_gen.py script from creating them again on a model by model basis)
+
+5) copying the accessionnum.json file into the 
+modelview/modelview.html
+folder
+
+this can be done by typing the below in the nrntest/verify folder
+
+cp 7.4/*/*/*json ~/senselab/Senselab/Web/ModelDB/modelview
+
+(then the model visualizer is available in the browser with a url
+senselab/modeldb/modelview/modelview.html#accessionnum)
+
+7) setting the has_modelview true by editing the model which will then
+activate the link to modelview (the updated showmodel.asp page
+contains the proper link)

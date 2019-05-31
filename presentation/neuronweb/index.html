@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Grr...</title>
+
+	<meta charset=utf-8 />
+	
+	<link rel="stylesheet" href="static/css/styles.css"/>
+	<script src="jquery.js"></script>
+	<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css"/>
+	<link rel="stylesheet" href="jquery-ui-1.10.3/themes/base/jquery.ui.all.css"/>
+	<link rel="stylesheet" href="jquery-ui-1.10.3/themes/base/jquery.ui.menubar.css"/>
+	
+	<script src="jquery-ui-1.10.3/ui/jquery.ui.core.js"></script>
+	<script src="jquery-ui-1.10.3/ui/jquery.ui.widget.js"></script>
+	<script src="jquery-ui-1.10.3/ui/jquery.ui.position.js"></script>
+	<script src="jquery-ui-1.10.3/ui/jquery.ui.button.js"></script>
+	<script src="jquery-ui-1.10.3/ui/jquery.ui.menu.js"></script>
+	<script src="jquery-ui-1.10.3/ui/jquery.ui.menubar.js"></script>
+	
+    <script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
+	<script src="jquery.dialogextend.js"></script>
+	
+	<!-- The following are imports for Flot!-->
+	<script type="text/javascript" src="flot/jquery.flot.js"></script>
+	<script type="text/javascript" src="flot/jquery.flot.navigate.js"></script>
+	<script type="text/javascript" src="flot/jquery.flot.resize.js"></script>
+	
+	<!-- Imports for jQuery/JavaScript/Flot that I wrote -->
+	<script type="text/javascript" src="myjQuery/myDialog.js"></script>
+	<script type="text/javascript" src="myjQuery/myFlot.js"></script>
+	
+	<!-- Button Listeners! -->
+   <script> 
+   $(function() {
+		$('.my-button').click(MakeDialog); // Makes the window.
+		
+		$('.labelButton').click(function() { 
+			var windowID = $('#windowID').val();
+			//windowID=1;
+			AddLabel(windowID, 'Label here');
+		});
+		
+		$('.textFieldButton').click(function(){
+			var windowID = $('#windowID').val();
+			//windowID=1;
+			AddTextField(windowID, 'Default text here');
+		});
+		
+		$('.chartButton').click(function(){
+			var windowID = $('#windowID').val();
+			//windowID=1;
+			AddChart(windowID);
+		});
+		
+		$('.buttonButton').click(function(){
+			var windowID = $('#windowID').val();
+			//windowID=1;
+			AddButton(windowID, 'Default text here');
+		});
+    }); 
+	</script>
+</head>
+
+<body>
+    <button class="my-button">Add Dialog</button>
+	<br/>
+	<button class="labelButton">Add Label!</button>
+	<br/>
+	<button class="textFieldButton">Add Text Field!</button>
+	<br/>	
+	<button class="buttonButton">Add Button!</button>
+	<br/>	
+	<button class="chartButton">Add Chart!</button>
+	<br/>
+	<!--Sahil's Code
+	<button class="AddMenu">Add Menu</button>
+	<input value="2" class="AddMenuInput"/>
+	<br/>
+	-->
+	<label>What window do you want to put stuff in?</label>
+	<br>
+	<input type="text" id="windowID" value="1"/>
+	<br/>
+	<!--<button class="paragraphButton">Add<P></button>-->
+</body>
+</html>
+

@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="static/css/styles-flot.css"/>
+
+	<link rel="stylesheet" href="static/css/jquery-ui.css"/>
+	<script src="static/js/jquery1.9.1.js"></script>
+    <script src="static/js/jquery-ui.js"></script>
+	<script src="static/js/jquery.dialogextend.js"></script>
+	
+	<!-- The following are imports for Flot!-->
+	<script type="text/javascript" src="flot/jquery.flot.js"></script>
+	<script type="text/javascript" src="flot/jquery.flot.navigate.js"></script>
+	<script type="text/javascript" src="flot/jquery.flot.resize.js"></script>
+	<script type="text/javascript" src="flot/jquery.flot.axislabels.js"></script>
+	<script type="text/javascript" src="static/js/main.js"></script>
+	
+	<!-- Imports for jQuery/JavaScript/Flot that Robert and Nicole wrote -->
+	<script type="text/javascript" src="myjQuery/myDialog.js"></script>
+	<script type="text/javascript" src="myjQuery/myFlot.js"></script>
+	<script src="static/js/jquery.cookie.js"></script>
+	<script src="static/js/jquery.treeview.js" type="text/javascript"></script>
+	<link rel="stylesheet" href="static/css/jquery.treeview.css" />	
+
+	<!-- #windowID is the id of the html element 
+	which the desired element will append to. -->
+	
+	<!--Button Listeners!-->
+	<script>
+		$(function() {
+			$('.my-button').click(function(){
+				MakeDialog(counter+1, true);
+				}); // Makes the window.
+			
+			$('.labelButton').click(function() { 
+				var windowID = $('#windowID').val(); 
+				//windowID=1;
+				AddLabel(windowID, 'Label here');
+			});
+			
+			$('.textFieldButton').click(function(){
+				var windowID = $('#windowID').val();
+				//windowID=1;
+				AddTextField(windowID, 'Default text here');
+			});
+			
+			$('.chartButton').click(function(){
+				var windowID = $('#windowID').val();
+				//windowID=1;
+				AddChart(windowID);
+			});
+			
+			$('.buttonButton').click(function(){
+				var windowID = $('#windowID').val();
+				//windowID=1;
+				AddButton(windowID, 'Default text here');
+			});
+			
+			$('.dropDownButton').click(function(){
+				var windowID = $('#windowID').val();
+				//windowID=1;
+				//console.log('#frameOption'[0].value);
+				var list = ['1', '2', '3'];
+				AddDropdown(windowID, list);
+			});
+			
+			$('.vboxButton').click(function(){
+				var windowID = $('#windowID').val();
+				//windowID=1;
+				//console.log('#frameOption'[0].value);
+				var frameOption=$('#frameOption'[0].value);
+				var boxid = AddVbox(windowID, frameOption);
+				AddLabel(boxid, 'vbox ' + boxid);
+				
+			});			
+			
+			$('.hboxButton').click(function(){
+				var windowID = $('#windowID').val();
+				//windowID=1;
+				var frameOption=$('#frameOption'[0].value);
+				var boxid = AddHbox(windowID, frameOption);
+				AddLabel(boxid, 'hbox ' + boxid);
+			});
+			$('.accordionButton').click(function(){
+				var windowID = $('#windowID').val();
+				AddAccordion(windowID, ['lorem', 'ipsum', 'dolor'])
+			});
+			$('.buttonsetButton').click(function() {
+			    var windowID = $('#windowID').val();
+			    AddButtonSet(windowID, ['llama', 'llama', 'duck'], {selected:1, callback: function(a) {console.log(a)}});
+		    });
+		    $('.treeButton').click(function() {
+			    var windowID = $('#windowID').val();
+			    AddTree(windowID, [
+			        ['Animals', {callback: function() {console.log('Animals!');}, children:[
+	                    ['Dogs', {callback: function() {console.log('Dogs!');}}],
+	                    ['Cats'],
+	                    ['Aardvarks']]}],
+                    ['Plants', {callback: function() {console.log('Vegetables?');}, children:[
+                        ['Tree'],
+                        ['Arabidopsis']]}]]);
+		    });
+			
+			
+			//Replicating Neuron Dialogs!
+			
+			$('.tools-runcontrol').click(function() {
+			    AddToolsRunControl();
+		    });
+		}); 
+	</script>
+</head>
+
+<body>
+
+	<h3>What div/window/deck/v or hbox do you want to put stuff in?</h3>
+	<input type="text" id="windowID" value="1"/>
+	</br>
+	
+	<h3>General dialog builder</h3>
+
+    <button class="my-button">Add Dialog</button>
+	<br/>
+	<button class="labelButton">Add Label!</button>
+	<br/>
+	<button class="textFieldButton">Add Text Field!</button>
+	<br/>	
+	<button class="buttonButton">Add Button!</button>
+	<br/>	
+	<button class="chartButton">Add Chart!</button>
+	<br/>
+	<button class="dropDownButton">Add Drop Down!</button>
+	<br/>
+	<button class="accordionButton">Add Accordion</button>
+	<br/>
+	<button class="buttonsetButton">Add Button Set</button>
+	<br/>
+	<button class="treeButton">Add Tree</button>
+	<br/>
+	
+	
+	<h3>Replicate NEURON Dialogs</h3>
+	<button class="tools-runcontrol">Tools: Run Contol</button>
+	
+	
+	
+	<h3>VBox, Hbox Options</h3>
+	<form>
+	<p>First: Choose frame option</p>
+	<select id="frameOption">
+		<option value="0">0-inset</option>
+		<option value="1">1-outset</option>
+		<option value="4">4-black border</option>
+		<option value="5">5-no border</option>
+	</select>
+	</form>
+	<p>Second: Choose vertical or horizontal box.</p>
+	<button class="vboxButton">Add VBox!</button>
+	<button class="hboxButton">Add HBox!</button>
+	<br/>
+	
+</body>
+
+</html>
