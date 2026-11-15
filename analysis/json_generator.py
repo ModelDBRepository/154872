@@ -252,11 +252,11 @@ def all_segs_have(sec, name, val):
     We compare their representations with %g rather than their exact values.
     """
     if name in ('cm', 'Ra'):
-        return '%g' % sec.__getattribute__(name) == '%g' % val
+        return '%g' % getattr(sec, name) == '%g' % val
     for seg in sec:
         if not hasattr(seg, name):
             return False
-        if '%g' % seg.__getattribute__(name) != '%g' % val:
+        if '%g' % getattr(seg, name) != '%g' % val:
             return False
     return True
         
